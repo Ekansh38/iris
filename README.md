@@ -34,23 +34,17 @@ Requires Python 3 (Homebrew recommended). Run once from the project folder:
 ./install.sh
 ```
 
-This copies `iris.py` to `~/.iris/`, installs dependencies, and registers Iris as a login item so it starts automatically. It also starts Iris immediately.
+This copies `iris.py` to `~/.iris/`, installs dependencies, and launches Iris.
 
 ---
 
 ## Launching
 
-Iris starts at login automatically. To launch it manually, double-click `Iris.app` or find it in Spotlight.
+Double-click `Iris.app` or search for Iris in Spotlight.
 
-**One-time Gatekeeper setup:** macOS blocks unsigned apps on first launch. Right-click `Iris.app` > **Open** > **Open**. You only need to do this once — after that, double-click and Spotlight work normally.
+**Quit Iris** in the menu fully stops it. Relaunch the same way.
 
-**Optional:** Move `Iris.app` to `/Applications` for easier Spotlight and Dock access.
-
----
-
-## Quitting
-
-Click **Quit Iris** in the menu to stop it. Iris will not restart until you relaunch it or log in again.
+**To start Iris at login:** System Settings > General > Login Items > click `+` and add `Iris.app`.
 
 ---
 
@@ -81,29 +75,14 @@ BREAK_SECONDS  = 20        # how long each break lasts
 SNOOZE_SECONDS = 5 * 60    # snooze duration
 ```
 
-Then re-run `./install.sh` to apply the changes.
-
----
-
-## Disable auto-start at login
-
-```bash
-launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
-```
-
-To re-enable:
-
-```bash
-launchctl load ~/Library/LaunchAgents/com.iris.eyetimer.plist
-```
+Re-run `./install.sh` to apply changes.
 
 ---
 
 ## Uninstall
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
-rm -rf ~/.iris ~/Library/LaunchAgents/com.iris.eyetimer.plist
+rm -rf ~/.iris
 ```
 
 ---

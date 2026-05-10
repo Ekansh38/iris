@@ -1,17 +1,16 @@
 #!/bin/bash
-# Installs Iris to ~/.iris/ and registers it as a login item.
-# Run this once from the project folder. After that, Iris.app and login auto-start both work.
+# Installs Iris to ~/.iris/ and launches it.
+# Run once from the project folder, then use Iris.app to launch anytime.
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 INSTALL_DIR="$HOME/.iris"
 VENV="$INSTALL_DIR/venv"
-PLIST="$HOME/Library/LaunchAgents/com.iris.eyetimer.plist"
 
 echo "Installing Iris..."
 
-# Copy script to home dir (away from TCC-restricted Desktop)
+# Copy script away from Desktop (macOS TCC restricts app access there)
 mkdir -p "$INSTALL_DIR"
 cp "$SCRIPT_DIR/iris.py" "$INSTALL_DIR/iris.py"
 
@@ -22,30 +21,19 @@ fi
 "$VENV/bin/pip" install -q rumps
 echo "  Python environment ready."
 
-# LaunchAgent: auto-start at login
-mkdir -p "$HOME/Library/LaunchAgents"
-cat > "$PLIST" << PLIST_EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.iris.eyetimer</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>$VENV/bin/python3</string>
-        <string>$INSTALL_DIR/iris.py</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-</dict>
-</plist>
-PLIST_EOF
-
-# Start it now
-launchctl unload "$PLIST" 2>/dev/null || true
-launchctl load "$PLIST"
+# Remove any old LaunchAgent if present
+PLIST="$HOME/Library/LaunchAgents/com.iris.eyetimer.plist"
+if [ -f "$PLIST" ]; then
+  launchctl unload "$PLIST" 2>/dev/null || true
+  rm -f "$PLIST"
+  echo "  Removed old LaunchAgent."
+fi
 
 echo ""
-echo "Done. Iris is running and will start automatically at login."
-echo "To uninstall: launchctl unload $PLIST && rm -rf $INSTALL_DIR $PLIST"
+echo "Done. Launching Iris now..."
+open "$SCRIPT_DIR/Iris.app"
+
+echo ""
+echo "To launch Iris anytime: double-click Iris.app or search in Spotlight."
+echo "To start at login: System Settings > General > Login Items > add Iris.app"
+echo "To uninstall: rm -rf ~/.iris"
