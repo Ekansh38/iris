@@ -18,9 +18,9 @@ cp "$SCRIPT_DIR/iris.py" "$INSTALL_DIR/iris.py"
 # Set up venv with rumps
 if [ ! -f "$VENV/bin/python3" ]; then
   python3 -m venv "$VENV"
-  "$VENV/bin/pip" install -q rumps
-  echo "  Python environment ready."
 fi
+"$VENV/bin/pip" install -q rumps
+echo "  Python environment ready."
 
 # LaunchAgent: auto-start at login
 mkdir -p "$HOME/Library/LaunchAgents"

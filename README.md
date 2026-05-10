@@ -35,13 +35,15 @@ Run this once from the project folder:
 ```
 
 This will:
-- Install `iris.py` and its dependencies to `~/.iris/`
-- Register a Login Item so Iris starts automatically every time you log in
+- Copy `iris.py` and its dependencies to `~/.iris/`
+- Register a LaunchAgent (`~/Library/LaunchAgents/com.iris.eyetimer.plist`) so Iris starts automatically at login
 - Start Iris immediately
 
-After that, `Iris.app` is also available as a double-clickable launcher.
+After that, `Iris.app` is also available as a double-clickable launcher. First launch of the app requires a one-time Gatekeeper bypass: right-click `Iris.app` > **Open** > **Open**.
 
-**Optional:** Move `Iris.app` to your `/Applications` folder for easy access from Spotlight and the Dock.
+**Optional:** Move `Iris.app` to `/Applications` for easy Spotlight and Dock access.
+
+**To disable auto-start at login**, remove or unload the LaunchAgent (see Uninstall below).
 
 ---
 
@@ -55,7 +57,7 @@ Next break in 14:23
 Pause
 Snooze 5 min
 -----------------
-Today: 6 breaks
+Today: 6 breaks ✓
 -----------------
 Quit Iris
 ```
