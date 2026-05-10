@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run Iris — uses the venv Python which has rumps installed.
+# Run Iris: uses the venv Python which has rumps installed.
 
 cd "$(dirname "$0")"
 

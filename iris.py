@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Iris — 20-20-20 Eye Break Timer
+Iris: 20-20-20 Eye Break Timer
 A macOS menu bar app to protect your eyes during long coding sessions.
 """
 
@@ -78,7 +78,7 @@ class Iris(rumps.App):
         subprocess.Popen(["afplay", BREAK_SOUND])
         rumps.notification(
             "Iris",
-            "Eye break — look 20 ft away",
+            "Eye break: look 20 ft away",
             "Blink 10–15 times while you're at it 👀",
         )
 
@@ -116,7 +116,7 @@ class Iris(rumps.App):
 
     def _refresh_menu(self):
         if self.in_break:
-            self.status_item.title = f"Break — look away for {fmt(self.remaining)}s"
+            self.status_item.title = f"Break: look away for {fmt(self.remaining)}s"
         elif self.paused:
             self.status_item.title = "Paused"
         else:
