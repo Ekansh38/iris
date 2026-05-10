@@ -80,16 +80,18 @@ Then re-run `./install.sh` to apply changes.
 
 ## Starting and stopping
 
-Iris starts automatically at login. If you quit it from the menu bar and want to restart it without logging out:
+Iris starts automatically at login and restarts itself if you quit it from the menu bar. You do not need to relaunch it manually.
+
+To stop it permanently without uninstalling:
 
 ```bash
-launchctl start com.iris.eyetimer
+launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
 ```
 
-To stop it without uninstalling:
+To start it again after stopping:
 
 ```bash
-launchctl stop com.iris.eyetimer
+launchctl load ~/Library/LaunchAgents/com.iris.eyetimer.plist
 ```
 
 **Spotlight / double-click not working?** The first time you launch `Iris.app` from Spotlight or Finder, macOS blocks it because it is unsigned. Fix: open Finder, right-click `Iris.app` > **Open** > **Open**. This is a one-time step. After that, Spotlight and double-click work normally.
