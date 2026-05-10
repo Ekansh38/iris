@@ -12,6 +12,7 @@ WORK_SECONDS   = 20 * 60   # 20 minutes
 BREAK_SECONDS  = 20        # 20 seconds
 SNOOZE_SECONDS = 5 * 60    # 5 minutes
 BREAK_SOUND    = "/System/Library/Sounds/Glass.aiff"
+BREAK_END_SOUND = "/System/Library/Sounds/Ping.aiff"
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -86,8 +87,7 @@ class Iris(rumps.App):
         self.remaining    = WORK_SECONDS
         self.breaks_today += 1
 
-        # Voice cue — eyes are off screen so they need audio confirmation
-        subprocess.Popen(["say", "-r", "170", "Break over. Good work."])
+        subprocess.Popen(["afplay", BREAK_END_SOUND])
 
         label = "break" if self.breaks_today == 1 else "breaks"
         self.stats_item.title = f"Today: {self.breaks_today} {label} ✓"
