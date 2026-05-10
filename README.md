@@ -80,15 +80,19 @@ Then re-run `./install.sh` to apply changes.
 
 ## Starting and stopping
 
-Iris starts automatically at login. The **"Quit Iris"** menu item restarts it after a few seconds — it does not permanently stop it. This is intentional: Iris uses a LaunchAgent with `KeepAlive` enabled so it always comes back even if it crashes or is quit by accident.
+Iris starts automatically at login. **"Quit Iris"** fully stops it.
 
-To actually stop Iris:
+To relaunch it, double-click `Iris.app` or search for it in Spotlight.
+
+**First-time setup for double-click / Spotlight:** macOS blocks unsigned apps by default. Do this once: open Finder, right-click `Iris.app` > **Open** > **Open**. After that, double-click and Spotlight work permanently.
+
+To disable auto-start at login:
 
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
 ```
 
-To start it again after stopping:
+To re-enable auto-start:
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.iris.eyetimer.plist

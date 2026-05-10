@@ -38,8 +38,6 @@ cat > "$PLIST" << PLIST_EOF
     </array>
     <key>RunAtLoad</key>
     <true/>
-    <key>KeepAlive</key>
-    <true/>
 </dict>
 </plist>
 PLIST_EOF
