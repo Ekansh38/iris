@@ -10,40 +10,47 @@ A macOS menu bar app for the **20-20-20 rule**, the simplest habit to protect yo
 
 Every **20 minutes**, look at something **20 feet away** for **20 seconds**.
 
-This gives your ciliary muscle (the one that controls your lens focus) a chance to fully relax. Without breaks, it stays contracted for hours, causing eye strain, headaches, and over time, can contribute to myopia progression.
+This gives your ciliary muscle (the one that controls your lens focus) a chance to fully relax. Without breaks, it stays contracted for hours, causing eye strain, headaches, and over time can contribute to myopia progression.
 
 ---
 
 ## Features
 
-- **Menu bar countdown** -- always visible, never in your way (`👁 18:42`)
-- **Soft chime** when break starts -- so you know to look away
-- **Bell when break ends** -- heard while your eyes are off screen
-- **Snooze 5 min** -- for when you're mid-thought and need to finish
-- **Pause / Resume** -- for meetings, lunch, stepping away
-- **Daily break counter** -- simple streak to keep you honest
+- **Menu bar countdown** - always visible, never in your way (`👁 18:42`)
+- **Soft chime** when break starts - so you know to look away
+- **Bell when break ends** - heard while your eyes are off screen
+- **Snooze 5 min** - for when you're mid-thought
+- **Pause / Resume** - for meetings or stepping away
+- **Daily break counter** - simple tracker to keep you honest
 - No popups. No dialogs. Nothing that steals focus.
 
 ---
 
 ## Install
 
-Run this once from the project folder:
+Requires Python 3 (Homebrew recommended). Run once from the project folder:
 
 ```bash
 ./install.sh
 ```
 
-This will:
-- Copy `iris.py` and its dependencies to `~/.iris/`
-- Register a LaunchAgent (`~/Library/LaunchAgents/com.iris.eyetimer.plist`) so Iris starts automatically at login
-- Start Iris immediately
+This copies `iris.py` to `~/.iris/`, installs dependencies, and registers Iris as a login item so it starts automatically. It also starts Iris immediately.
 
-After that, `Iris.app` is also available as a double-clickable launcher. First launch of the app requires a one-time Gatekeeper bypass: right-click `Iris.app` > **Open** > **Open**.
+---
 
-**Optional:** Move `Iris.app` to `/Applications` for easy Spotlight and Dock access.
+## Launching
 
-**To disable auto-start at login**, remove or unload the LaunchAgent (see Uninstall below).
+Iris starts at login automatically. To launch it manually, double-click `Iris.app` or find it in Spotlight.
+
+**One-time Gatekeeper setup:** macOS blocks unsigned apps on first launch. Right-click `Iris.app` > **Open** > **Open**. You only need to do this once — after that, double-click and Spotlight work normally.
+
+**Optional:** Move `Iris.app` to `/Applications` for easier Spotlight and Dock access.
+
+---
+
+## Quitting
+
+Click **Quit Iris** in the menu to stop it. Iris will not restart until you relaunch it or log in again.
 
 ---
 
@@ -51,14 +58,14 @@ After that, `Iris.app` is also available as a double-clickable launcher. First l
 
 ```
 👁 14:23
------------------
+---------------------------
 Next break in 14:23
------------------
+---------------------------
 Pause
 Snooze 5 min
------------------
+---------------------------
 Today: 6 breaks ✓
------------------
+---------------------------
 Quit Iris
 ```
 
@@ -74,31 +81,21 @@ BREAK_SECONDS  = 20        # how long each break lasts
 SNOOZE_SECONDS = 5 * 60    # snooze duration
 ```
 
-Then re-run `./install.sh` to apply changes.
+Then re-run `./install.sh` to apply the changes.
 
 ---
 
-## Starting and stopping
-
-Iris starts automatically at login. **"Quit Iris"** fully stops it.
-
-To relaunch it, double-click `Iris.app` or search for it in Spotlight.
-
-**First-time setup for double-click / Spotlight:** macOS blocks unsigned apps by default. Do this once: open Finder, right-click `Iris.app` > **Open** > **Open**. After that, double-click and Spotlight work permanently.
-
-To disable auto-start at login:
+## Disable auto-start at login
 
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
 ```
 
-To re-enable auto-start:
+To re-enable:
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.iris.eyetimer.plist
 ```
-
-**Spotlight / double-click not working?** The first time you launch `Iris.app` from Spotlight or Finder, macOS blocks it because it is unsigned. Fix: open Finder, right-click `Iris.app` > **Open** > **Open**. This is a one-time step. After that, Spotlight and double-click work normally.
 
 ---
 
