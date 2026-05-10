@@ -1,5 +1,13 @@
 #!/bin/bash
-# Resolve the project root (three levels up from Iris.app/Contents/MacOS/)
-DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
-cd "$DIR"
-exec ./run.sh
+unset VIRTUAL_ENV PYTHONHOME
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+
+VENV="$HOME/.iris/venv"
+SCRIPT="$HOME/.iris/iris.py"
+
+if [ ! -f "$SCRIPT" ] || [ ! -f "$VENV/bin/python3" ]; then
+  osascript -e 'display dialog "Run install.sh from the Iris project folder first." buttons {"OK"} default button "OK" with icon caution with title "Iris"'
+  exit 1
+fi
+
+exec "$VENV/bin/python3" "$SCRIPT"
