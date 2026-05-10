@@ -40,10 +40,14 @@ The repo includes `Iris.app` — a native macOS app bundle you can double-click 
 
 **First time only:** macOS will block it because it's unsigned. Right-click `Iris.app` → **Open** → **Open** to bypass this once. After that, double-click works normally.
 
+**Optional — move to Applications:**
+
+Drag `Iris.app` into your `/Applications` folder so it lives alongside your other apps and is easy to find from Spotlight.
+
 **To launch at login:**
 1. Open **System Settings → General → Login Items**
 2. Click **+** under "Open at Login"
-3. Navigate to the Iris project folder and select `Iris.app`
+3. Select `Iris.app` (wherever you placed it)
 
 Iris will start silently in the menu bar every time you log in.
 
