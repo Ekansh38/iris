@@ -1,11 +1,14 @@
 #!/bin/bash
-# Run Iris — installs dependencies if needed, then launches the menu bar app.
+# Run Iris — uses the venv Python which has rumps installed.
 
 cd "$(dirname "$0")"
 
-if ! python3 -c "import rumps" 2>/dev/null; then
-  echo "Installing dependencies..."
-  pip3 install -r requirements.txt
+VENV_PYTHON="$(dirname "$0")/venv/bin/python3"
+
+if [ ! -f "$VENV_PYTHON" ]; then
+  echo "Setting up venv..."
+  python3 -m venv venv
+  venv/bin/pip install -r requirements.txt
 fi
 
-python3 iris.py
+exec "$VENV_PYTHON" iris.py
