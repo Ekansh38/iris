@@ -80,9 +80,9 @@ Then re-run `./install.sh` to apply changes.
 
 ## Starting and stopping
 
-Iris starts automatically at login and restarts itself if you quit it from the menu bar. You do not need to relaunch it manually.
+Iris starts automatically at login. The **"Quit Iris"** menu item restarts it after a few seconds — it does not permanently stop it. This is intentional: Iris uses a LaunchAgent with `KeepAlive` enabled so it always comes back even if it crashes or is quit by accident.
 
-To stop it permanently without uninstalling:
+To actually stop Iris:
 
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.iris.eyetimer.plist
