@@ -1,13 +1,22 @@
-#!/bin/bash
-unset VIRTUAL_ENV PYTHONHOME
-export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+#!/opt/homebrew/bin/python3
+import subprocess
+import os
+import sys
+import time
 
-VENV="$HOME/.iris/venv"
-SCRIPT="$HOME/.iris/iris.py"
+venv_python = os.path.expanduser("~/.iris/venv/bin/python3")
+iris_path = os.path.expanduser("~/.iris/iris.py")
 
-if [ ! -f "$SCRIPT" ] || [ ! -f "$VENV/bin/python3" ]; then
-  osascript -e 'display dialog "Run install.sh from the Iris project folder first." buttons {"OK"} default button "OK" with icon caution with title "Iris"'
-  exit 1
-fi
+if not os.path.exists(venv_python) or not os.path.exists(iris_path):
+    import subprocess as sp
+    sp.run(["osascript", "-e",
+        'display dialog "Run install.sh from the Iris project folder first." '
+        'buttons {"OK"} default button "OK" with icon caution with title "Iris"'])
+    sys.exit(1)
 
-exec "$VENV/bin/python3" "$SCRIPT"
+env = os.environ.copy()
+env.pop("VIRTUAL_ENV", None)
+env.pop("PYTHONHOME", None)
+
+proc = subprocess.Popen([venv_python, iris_path], env=env)
+proc.wait()

@@ -12,7 +12,5 @@
     <string>Iris</string>
     <key>CFBundleIconFile</key>
     <string>iris</string>
-    <key>LSUIElement</key>
-    <true/>
 </dict>
 </plist>
