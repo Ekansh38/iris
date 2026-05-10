@@ -1,0 +1,5 @@
+#!/bin/bash
+# Resolve the project root (three levels up from Iris.app/Contents/MacOS/)
+DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
+cd "$DIR"
+exec ./run.sh

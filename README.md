@@ -18,7 +18,7 @@ This gives your ciliary muscle (the one that controls your lens focus) a chance 
 
 - **Menu bar countdown** — always visible, never in your way (`👁 18:42`)
 - **Soft chime** when break starts — so you know to look away
-- **Voice cue when break ends** — "Break over." heard while your eyes are off screen
+- **Bell when break ends** — heard while your eyes are off screen
 - **Snooze 5 min** — for when you're mid-thought and need to finish
 - **Pause / Resume** — for meetings, lunch, stepping away
 - **Daily break counter** — simple streak to keep you honest
@@ -32,7 +32,24 @@ This gives your ciliary muscle (the one that controls your lens focus) a chance 
 pip3 install rumps
 ```
 
-## Run
+---
+
+## Launch as an app (no Terminal needed)
+
+The repo includes `Iris.app` — a native macOS app bundle you can double-click like any other app.
+
+**First time only:** macOS will block it because it's unsigned. Right-click `Iris.app` → **Open** → **Open** to bypass this once. After that, double-click works normally.
+
+**To launch at login:**
+1. Open **System Settings → General → Login Items**
+2. Click **+** under "Open at Login"
+3. Navigate to the Iris project folder and select `Iris.app`
+
+Iris will start silently in the menu bar every time you log in.
+
+---
+
+## Run from Terminal
 
 ```bash
 ./run.sh
@@ -43,8 +60,6 @@ Or directly:
 ```bash
 python3 iris.py
 ```
-
-Iris will appear in your menu bar. That's it.
 
 ---
 
@@ -79,6 +94,6 @@ SNOOZE_SECONDS = 5 * 60    # snooze duration
 
 ## Requirements
 
-- macOS (uses `say`, `afplay`, and `osascript` — all built in)
+- macOS (uses `afplay` — built in)
 - Python 3
 - [`rumps`](https://github.com/jaredks/rumps)
